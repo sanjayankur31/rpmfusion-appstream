@@ -1,0 +1,3 @@
+[submodule "rpmfusion-appdata"]
+	path = rpmfusion-appdata
+	url = git@github.com:sanjayankur31/rpmfusion-appdata.git
