@@ -38,7 +38,7 @@ appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
 cp appstream-data/* ~/rpmbuild/SOURCES/
 
 pushd ~/rpmbuild/SPECS
-    rpmdev-bumpspec -c "Added new files to extra repo." -u "Ankur Sinha <ankursinha AT fedoraproject DOT org>" rpmfusion-free-appstream-data.spec
+    #rpmdev-bumpspec -c "Added new files to extra repo." -u "Ankur Sinha <ankursinha AT fedoraproject DOT org>" rpmfusion-free-appstream-data.spec
     rm -rf ../RPMS/noarch/rpmfusion-free*
     rpmbuild -ba rpmfusion-free-appstream-data.spec
 popd
