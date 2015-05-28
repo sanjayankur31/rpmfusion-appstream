@@ -33,12 +33,13 @@ appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
 --include-failed \
 --enable-hidpi \
 --screenshot-uri="http://ankursinha.fedorapeople.org/rpmfusion-appdata/free/" \
---extra-appdata-dir="../rpmfusion-appdata/appdata-extra-free"
+--extra-appdata-dir="../rpmfusion-appdata/appdata-extra-free" > builderlog.txt
 
 cp appstream-data/* ~/rpmbuild/SOURCES/
 
 pushd ~/rpmbuild/SPECS
     rpmdev-bumpspec -c "Added new files to extra repo." -u "Ankur Sinha <ankursinha AT fedoraproject DOT org>" rpmfusion-free-appstream-data.spec
+    rm -rf ../RPMS/noarch/rpmfusion-free*
     rpmbuild -ba rpmfusion-free-appstream-data.spec
 popd
 
