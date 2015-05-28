@@ -23,7 +23,7 @@ rm appstream-data/* -rf
 rm ~/rpmbuild/SOURCES/rpmfusion-nonfree*
 
 cd packages
-rsync -avPh --delete rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/22/x86_64/os/* .
+rsync -avPh --delete --exclude=repoview --exclude=repodata rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/22/x86_64/os/* .
 cd ..
 
 appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
@@ -36,6 +36,11 @@ appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
 --extra-appdata-dir="../rpmfusion-appdata/appdata-extra-nonfree"
 
 cp appstream-data/* ~/rpmbuild/SOURCES/
+
+pushd ~/rpmbuild/SPECS
+    rpmdev-bumpspec -c "Added new files to extra repo." -u "Ankur Sinha <ankursinha AT fedoraproject DOT org>" rpmfusion-nonfree-appstream-data.spec
+    rpmbuild -ba rpmfusion-nonfree-appstream-data.spec
+popd
 
 cd appstream-data/
 mkdir screenshots
